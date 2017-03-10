@@ -1,4 +1,5 @@
-# Warband-PW-Admin-Tool
+# Warband PW Punishments Manager
+Original Thread: https://forums.taleworlds.com/index.php/topic,310983.0.html
 Addon for the Persistent World module of Warband allowing admins to benefit from web-based tools.
 WARNING: This tool was made a few years ago using the insecure mysql_* functions in its PHP files, which may not be working in your current PHP version (>= 7.0). You may nonetheless want to alter the code in order to use a secure SQL access engine such as mysqli_* functions or PDO.
 
