@@ -15,15 +15,15 @@ WARNING: This tool was made a few years ago using the insecure mysql_* functions
 
 # Welcome / Ban Message Variables
 1. Welcome Message:
-	* *name* = Display Player Name
-	* *uid* = Display Player UID
+	* `\*`name`\*` = Display Player Name
+	* `\*`uid`\*` = Display Player UID
 2. Banned Message:
-	*	*name* = Display Player Name
-	*	*uid* = Display Player UID
-	* *invoker* = Display Ban Invoker
-	* *invoker_uid* = Display Ban Invoker UID
-	* *ban_date* = Display date the player got banned on
-	*	*unban_date* = Display date the player will be unbanned on
+	* `\*`name`\*` = Display Player Name
+	* `\*`uid`\*` = Display Player UID
+	* `\*`invoker`\*` = Display Ban Invoker
+	* `\*`invoker_uid`\*` = Display Ban Invoker UID
+	* `\*`ban_date`\*` = Display date the player got banned on
+	* `\*`unban_date`\*` = Display date the player will be unbanned on
 
 # Installation
 NOTES: If you already got the name server installed, it's advise to do files & database backup before editing anything. The Punishment manager in this version can only handle ONE server connected to the name server.
