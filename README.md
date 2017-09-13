@@ -27,33 +27,36 @@ WARNING: This tool was made a few years ago using the insecure mysql_* functions
 
 # Installation
 NOTES: If you already got the name server installed, it's advise to do files & database backup before editing anything. The Punishment manager in this version can only handle ONE server connected to the name server.
-To install, you need a web server with PHP and MySQL installed; I use Linux and Apache (LAMP) so the instructions will be tailored to that. 
+To install, you need a web server with PHP and MySQL installed; I use Linux and Apache (LAMP) so the instructions will be tailored to that.
+
 Lines starting with "$" represent commands to run in the shell prompt, and lines starting with "mysql>" represent queries to run in the mysql command line tool.
+
+------------------------
 
 To start off, you will need to uncompress 'pwnameserver' into the web directory of your server. 
 If you already got the name server installed, replace its folder. Make sure to set the name server as the directory you are in before connecting as root to your MySQL Server:
 
-$ cd /var/www/pwnameserver/
-$ mysql -u root -p
+`$ cd /var/www/pwnameserver/`  
+`$ mysql -u root -p`
 
 If you do not have the name server already installed:
 
-mysql> CREATE DATABASE pw_player_names;
-mysql> GRANT ALL PRIVILEGES ON pw_player_names.* TO 'pw_name_server'@'localhost' IDENTIFIED BY 'FX3nQGY5Hdqc';
-mysql> USE pw_player_names;
-mysql> SOURCE private/create_database.sql;
-mysql> UPDATE warband_servers SET password = SHA1('N6XcqAXD') WHERE name = 'Server';
+`mysql> CREATE DATABASE pw_player_names;`  
+`mysql> GRANT ALL PRIVILEGES ON pw_player_names.* TO 'pw_name_server'@'localhost' IDENTIFIED BY 'FX3nQGY5Hdqc';`  
+`mysql> USE pw_player_names;`  
+`mysql> SOURCE private/create_database.sql;`  
+`mysql> UPDATE warband_servers SET password = SHA1('N6XcqAXD') WHERE name = 'Server';`  
 
 The last command set the connection password between your game server and the web server.
 If you do have the name server installed:
 
-mysql> USE pw_player_names;
-mysql> SOURCE private/update.sql;
+`mysql> USE pw_player_names;`  
+`mysql> SOURCE private/update.sql;`  
 
 Now, the database tables and basic informations were created, you need to set the root user password:
 
-mysql> UPDATE web_accounts SET passwd = SHA1('Qy7rQf9n') WHERE name = 'root';
-mysql> exit;
+`mysql> UPDATE web_accounts SET passwd = SHA1('Qy7rQf9n') WHERE name = 'root';`  
+`mysql> exit;`  
 
 Now the database is ready, make sure to edit the file 'private/config.php' to fit with your database informations.
 Edit the constant lines (if needed) 'database_server_name', 'database_username', 'database_password', 'database_name' & 'server_id'.
@@ -66,11 +69,11 @@ You can also create an account for each of the admins you got in your team.
 Now, you'll need to set a cronjob. It'll be a script that will be triggered each X minutes and that will check if the ban time is over. 
 If it is, then, the player is removed from the ban list and is able to join the server, else, he'll remain banned untill his ban time is over. To do this, you must ensure cURL is installer.
 
-$ crontab -e
+`$ crontab -e`  
 
 Go at the bottom of the file and add a line:
 
-*/10 * * * * curl -L localhost/pwnameserver/server-requests/auto_unban.php
+`*/10 * * * * curl -L localhost/pwnameserver/server-requests/auto_unban.php`  
 
 Save and quit. This line means the link 'localhost/pwnameserver/server-requests/auto_unban.php' will be triggered each 10 minutes. 
 You can find more informations about cronjobs by following this link.
